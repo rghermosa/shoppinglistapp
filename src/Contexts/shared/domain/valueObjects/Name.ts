@@ -2,13 +2,8 @@ import { NameContainingSpecialCharsException } from '../Exceptions/NameContainin
 import { NameTooShortException } from '../Exceptions/NameTooShortException';
 
 export class Name {
-  private value: string;
+  readonly value: string;
   constructor(value: string) {
-    Name.nameValidation(value);
-    this.value = value;
-  }
-
-  public changeName(value: string): void {
     Name.nameValidation(value);
     this.value = value;
   }

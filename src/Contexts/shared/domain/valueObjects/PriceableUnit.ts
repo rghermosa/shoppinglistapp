@@ -1,12 +1,12 @@
 export class PriceableUnit {
-  readonly value: Number;
+  readonly value: number;
 
-  constructor(value: Number) {
+  constructor(value: number) {
     PriceableUnit.priceValidation(value);
     this.value = value;
   }
 
-  public static priceValidation(price: Number): boolean | never {
+  public static priceValidation(price: number): boolean | never {
     if (price < 0) throw new Error();
     return true;
   }

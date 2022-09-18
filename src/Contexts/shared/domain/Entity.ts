@@ -1,11 +1,31 @@
 import { Id } from './valueObjects/Id';
-import { Name } from './valueObjects/Name';
 
-export class Entity {
-  readonly id: Id;
-  readonly name: Name;
-  constructor(id: Id, name: Name) {
-    this.id = id;
-    this.name = name;
+const isEntity = (v: any): v is Entity<any> => {
+  return v instanceof Entity;
+};
+
+export abstract class Entity<T> {
+  protected readonly _id: Id;
+  public readonly props: T;
+
+  constructor(props: T, id?: Id) {
+    this._id = id ? id : new Id();
+    this.props = props;
+  }
+
+  public equals(object?: Entity<T>): boolean {
+    if (object == null || object == undefined) {
+      return false;
+    }
+
+    if (this === object) {
+      return true;
+    }
+
+    if (!isEntity(object)) {
+      return false;
+    }
+
+    return this._id.equals(object._id);
   }
 }
