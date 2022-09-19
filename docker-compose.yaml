@@ -22,9 +22,9 @@ services:
       - MESSAGE_BUS=amqp://rabbitmq
     links:
       - rabbitmq
-      - inventory-management-db
-  inventory-management-db:
-    container_name: inventory-management-db
+      - inventory-db
+  inventory-db:
+    container_name: inventory-db
     build: ./src/Contexts/inventory-management/app/db
     ports:
       - "5433:5432"

@@ -24,7 +24,7 @@ export class DatabaseConnection {
   async create() {
     this.connection = new DataSource({
       type: 'postgres',
-      host: 'inventory-management-db',
+      host: 'inventory-db',
       username: 'postgres',
       password: 'postgres',
       port: 5432,
