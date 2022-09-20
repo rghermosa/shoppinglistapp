@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev:inventory-management": "npm run build:clean && nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/Contexts/inventory-management/app/start.ts",
+    "dev:catalogue": "npm run build:clean && nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/Contexts/catalogue/app/start.ts",
     "build:clean": "npm run build:tsc",
     "build:tsc": "tsc"
   },

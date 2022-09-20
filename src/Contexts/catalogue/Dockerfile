@@ -4,18 +4,18 @@ WORKDIR /usr/app
 
 #COPY package*.json ./
 
-COPY ./inventory-management ./inventory-management
+COPY ./catalogue ./catalogue
 COPY ./shared ./shared
 
 WORKDIR /usr/app/shared
 
 RUN npm install
 
-WORKDIR /usr/app/inventory-management
+WORKDIR /usr/app/catalogue
 
 RUN npm install
 
 EXPOSE 3000
 
 
-CMD [ "node", "dist/inventory-management/app/start.js" ]
+CMD [ "node", "dist/catalogue/app/start.js" ]

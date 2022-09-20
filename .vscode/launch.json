@@ -11,7 +11,7 @@
       "skipFiles": [
         "<node_internals>/**"
       ],
-      "program": "${workspaceFolder}/src/Contexts/Inventory/app/start.ts",
+      "program": "${workspaceFolder}/src/Contexts/catalogue/app/start.ts",
       "runtimeArgs": ["-r", "ts-node/register", "-r", "tsconfig-paths/register"],
       "console": "integratedTerminal",
       "preLaunchTask": "tsc: build - tsconfig.json",

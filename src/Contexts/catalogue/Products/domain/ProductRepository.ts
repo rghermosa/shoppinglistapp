@@ -1,6 +1,6 @@
 import { BrandId } from '../../Brands/domain/valueobjects/BrandId';
 import { ProductId } from './valueobjects/ProductId';
-import { ProductName } from '../domain/valueobjects/ProductName';
+import { ProductName } from './valueobjects/ProductName';
 import { Product } from './Product';
 import { ProductCategory } from './valueobjects/ProductCategory';
 import { ProductPrice } from './valueobjects/ProductPrice';

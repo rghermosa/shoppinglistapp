@@ -1,7 +1,7 @@
 import { Id } from '../../../shared/domain/valueObjects/Id';
 import { Name } from '../../../shared/domain/valueObjects/Name';
 import { BrandId } from './valueobjects/BrandId';
-import { BrandName } from '../domain/valueobjects/BrandName';
+import { BrandName } from './valueobjects/BrandName';
 import { Brand } from './Brand';
 import { BrandCategory } from './valueobjects/BrandCategory';
 

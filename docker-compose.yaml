@@ -9,11 +9,11 @@ services:
 
 
 
-  inventory-management:
-    container_name: inventory-management
+  catalogue:
+    container_name: catalogue
     build:
       context: ./src/Contexts
-      dockerfile: inventory-management/Dockerfile
+      dockerfile: catalogue/Dockerfile
     ports:
       - "8080:3000"
     command: npm run build
@@ -22,14 +22,14 @@ services:
       - MESSAGE_BUS=amqp://rabbitmq
     links:
       - rabbitmq
-      - inventory-db
-  inventory-db:
-    container_name: inventory-db
-    build: ./src/Contexts/inventory-management/app/db
+      - catalogue-db
+  catalogue-db:
+    container_name: catalogue-db
+    build: ./src/Contexts/catalogue/app/db
     ports:
       - "5433:5432"
     environment:
-      - POSTGRES_DB=Inventory
+      - POSTGRES_DB=Catalogue
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
 

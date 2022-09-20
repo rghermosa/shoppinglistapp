@@ -13,22 +13,15 @@ export class DatabaseConnection {
   constructor() {
     this.create();
   }
-  async createConnection() {
-    const pool = new Pool({
-      host: 'localhost',
-      user: 'postgres',
-      password: 'password',
-      database: 'Inventory',
-    });
-  }
+
   async create() {
     this.connection = new DataSource({
       type: 'postgres',
-      host: 'inventory-db',
+      host: 'catalogue-db',
       username: 'postgres',
       password: 'postgres',
       port: 5432,
-      database: 'Inventory',
+      database: 'Catalogue',
       entities: [Brand, Product],
       logging: true,
       synchronize: true,
