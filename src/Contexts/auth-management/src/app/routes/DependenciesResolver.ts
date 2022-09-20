@@ -1,14 +1,12 @@
 import { Router } from 'express';
+import { container, registry } from 'tsyringe';
+import { RegisterController } from '../../Register/infrastructure/RegisterController';
+import { PostgresRegisterRepository } from '../../Register/infrastructure/typeorm/repositories/PostgresRegisterRepository';
 
-// @registry([
-//   { token: 'BrandRepository', useClass: PostgreSQLBrandRepository },
-//   { token: 'ProductRepository', useClass: PostgreSQLProductRepository },
-// ])
+@registry([{ token: 'RegisterRepository', useClass: PostgresRegisterRepository }])
 export class DependenciesResolver {
   public static run(router: Router) {
-    router.use('/signup');
+    router.use('/signup', container.resolve(RegisterController).routes());
     router.use('/login');
-    // router.use('/brand', container.resolve(BrandController).routes());
-    // router.use('/product', container.resolve(ProductController).routes());
   }
 }
