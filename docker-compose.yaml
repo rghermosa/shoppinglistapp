@@ -1,14 +1,10 @@
 version: '3'
 
 services:
-
-
   rabbitmq:
       container_name: rabbitmq
       image: rabbitmq:3.7.4
-
-
-
+      
   catalogue:
     container_name: catalogue
     build:
@@ -34,16 +30,27 @@ services:
       - POSTGRES_PASSWORD=postgres
 
 
-  #user-management:
-  #  container_name: user-management
-   # build:
-    #  context: ./src/Contexts/user-management
-    #  dockerfile: Dockerfile
-    #ports:
-    #  - "3001:3000"
-    #environment:
-    #  - PORT=3000
-    #  - MESSAGE_BUS=amqp://rabbitmq
-    #links: 
-     #  - rabbitmq
+  auth-management:
+    container_name: auth-management
+    build:
+      context: ./src/Contexts/auth-management
+      dockerfile: Dockerfile
+    ports:
+      - "8081:3000"
+    environment:
+      - PORT=3000
+      - MESSAGE_BUS=amqp://rabbitmq
+    links: 
+      - rabbitmq
+      - auth-db
+
+  auth-db:
+    container_name: auth-db
+    build: ./src/Contexts/auth-management/app/db
+    ports:
+      - "5434:5432"
+    environment:
+      - POSTGRES_DB=Auth
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
   
