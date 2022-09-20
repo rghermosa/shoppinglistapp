@@ -31,8 +31,5 @@ export class CreateProductUseCase {
     const product: Product = Product.create(productName, productCategory, productPrice, brandId);
 
     await this.productRepository.create(product);
-
-    //console.log(this.domainEventBus);
-    //ProductPublisher.execute(constants.PRODUCT_CREATED, product);
   }
 }

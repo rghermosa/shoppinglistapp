@@ -1,8 +1,8 @@
 import { inject, injectable } from 'tsyringe';
-import { ProductId } from './valueobjects/ProductId';
 import { ProductNotFoundException } from './Exceptions/ProductNotFoundException';
 import { Product } from './Product';
 import { ProductRepository } from './ProductRepository';
+import { ProductId } from './valueobjects/ProductId';
 
 @injectable()
 export class ProductFinder {
@@ -14,7 +14,6 @@ export class ProductFinder {
   }
 
   async execute(id: ProductId): Promise<Product> {
-    console.log(id, 'sdsds');
     await this.exists(id);
     return this.productRepository.find(id);
   }

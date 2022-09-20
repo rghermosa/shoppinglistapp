@@ -1,5 +1,3 @@
-import mysql from 'mysql';
-import { Pool } from 'pg';
 import * as dotenv from 'dotenv';
 import clc from 'cli-color';
 import { DataSource } from 'typeorm';
