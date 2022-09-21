@@ -1,21 +1,23 @@
-import { injectable } from 'tsyringe';
+import { Request, Response, Router } from 'express';
+import { delay, inject, injectable } from 'tsyringe';
+import { LoginUseCase } from '../application/LoginUseCase';
 
 @injectable()
 export class LoginController {
   router: Router;
 
   constructor(
-    @inject(delay(() => RegisterUserUseCase))
-    private registerUserUseCase: RegisterUserUseCase
+    @inject(delay(() => LoginUseCase))
+    private loginUseCase: LoginUseCase
   ) {
-    this.registerUserUseCase = registerUserUseCase;
+    this.loginUseCase = loginUseCase;
     this.router = new (Router as any)();
   }
 
   async run(req: Request, res: Response) {
     try {
       console.log(req.body);
-      await this.registerUserUseCase.execute(req.body.email, req.body.password);
+      await this.loginUseCase.execute(req.body.email, req.body.password);
       res.send({ status: 'OK' }).status(201);
     } catch (error) {
       if (error instanceof Error) {

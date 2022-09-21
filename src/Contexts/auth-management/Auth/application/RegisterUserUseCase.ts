@@ -17,7 +17,7 @@ export class RegisterUserUseCase {
 
     const user: User = User.create(email, encryptedPassword);
     console.log(user);
-    const token = jwt.sign({ user_id: user.id }, 'QWERTY', { expiresIn: '24h' });
+    const token = jwt.sign({ user_id: user.id, email }, 'QWERTY', { expiresIn: '24h' });
 
     await this.userRepository.create(user, token);
   }
