@@ -1,6 +1,7 @@
 import clc from 'cli-color';
 import * as dotenv from 'dotenv';
 import { DataSource } from 'typeorm';
+import { User } from '../Auth/infrastructure/typeorm/entities/User';
 dotenv.config();
 
 export class DatabaseConnection {
@@ -18,7 +19,7 @@ export class DatabaseConnection {
       password: 'postgres',
       port: 5432,
       database: 'Auth',
-      entities: [],
+      entities: [User],
       logging: true,
       synchronize: true,
     });

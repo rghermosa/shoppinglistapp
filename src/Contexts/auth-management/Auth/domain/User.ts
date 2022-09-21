@@ -4,13 +4,15 @@ export class User {
   readonly password: string;
   readonly id: string;
 
-  private constructor(email: string, password: string, id?: string) {
+  private constructor(email: string, password: string, id: string) {
     this.email = email;
     this.password = password;
-    this.id = id === null ? uuid() : id;
+    this.id = id;
   }
 
   public static create(email: string, password: string, id?: string) {
-    return new User(email, password);
+    const fid = id === undefined || null ? uuid() : id;
+    console.log(fid);
+    return new User(email, password, fid);
   }
 }

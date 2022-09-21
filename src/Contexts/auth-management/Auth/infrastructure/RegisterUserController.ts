@@ -1,7 +1,8 @@
 import { Request, Response, Router } from 'express';
-import { delay, inject } from 'tsyringe';
+import { delay, inject, injectable } from 'tsyringe';
 import { RegisterUserUseCase } from '../application/RegisterUserUseCase';
 
+@injectable()
 export class RegisterUserController {
   router: Router;
 
@@ -15,6 +16,7 @@ export class RegisterUserController {
 
   async run(req: Request, res: Response) {
     try {
+      console.log(req.body);
       await this.registerUserUseCase.execute(req.body.email, req.body.password);
       res.send({ status: 'OK' }).status(201);
     } catch (error) {

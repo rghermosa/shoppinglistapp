@@ -1,6 +1,6 @@
+import { Brand } from '../domain/Brand';
 import { BrandId } from '../domain/valueobjects/BrandId';
 import { BrandName } from '../domain/valueobjects/BrandName';
-import { Brand } from '../domain/Brand';
 
 export class BrandMap {
   public static toDomain(raw: any): Promise<Brand> {

@@ -9,6 +9,9 @@ export class User extends BaseEntity {
   email: string;
 
   @Column()
+  token: string;
+
+  @Column()
   password: string;
 
   @CreateDateColumn()
