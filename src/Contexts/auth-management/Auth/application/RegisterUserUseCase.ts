@@ -1,6 +1,10 @@
+import bcrypt from 'bcryptjs';
+import * as dotenv from 'dotenv';
+import jwt from 'jsonwebtoken';
 import { inject, injectable } from 'tsyringe';
 import { RegisterRepository } from '../domain/interfaces/RegisterRepository';
 import { User } from '../domain/User';
+dotenv.config();
 
 @injectable()
 export class RegisterUserUseCase {
@@ -9,7 +13,12 @@ export class RegisterUserUseCase {
   }
 
   async execute(email: string, password: string) {
-    const user: User = User.create(email, password);
-    await this.userRepository.create(user);
+    const encryptedPassword = await bcrypt.hash(password, 10);
+
+    const user: User = User.create(email, encryptedPassword);
+    console.log(user);
+    const token = jwt.sign({ user_id: user.id }, 'QWERTY', { expiresIn: '24h' });
+
+    await this.userRepository.create(user, token);
   }
 }

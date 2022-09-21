@@ -33,10 +33,11 @@ services:
   auth-management:
     container_name: auth-management
     build:
-      context: ./src/Contexts/auth-management
-      dockerfile: Dockerfile
+      context: ./src/Contexts
+      dockerfile: auth-management/Dockerfile
     ports:
       - "8081:3000"
+    command: npm run build
     environment:
       - PORT=3000
       - MESSAGE_BUS=amqp://rabbitmq
