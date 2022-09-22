@@ -3,7 +3,8 @@ import { User } from '../domain/User';
 export class UserMapper {
   public static toDomain(raw: any): Promise<User> {
     return new Promise((resolve, reject) => {
-      const user: User = User.create(raw.id, raw.email, raw.password);
+      console.log(raw, 'raw');
+      const user: User = User.create(raw.email, raw.password, raw.id);
       resolve(user);
     });
   }
