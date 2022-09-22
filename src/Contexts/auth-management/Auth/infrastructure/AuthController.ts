@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { container, injectable } from 'tsyringe';
+import { LoginController } from './LoginController';
 import { RegisterUserController } from './RegisterUserController';
 
 @injectable()
@@ -15,7 +16,10 @@ export class AuthController {
       registerUser.run(req, res);
     });
 
-    this.router.post('/login', (req, res) => {});
+    this.router.post('/login', (req, res) => {
+      const loginUser = container.resolve(LoginController);
+      loginUser.run(req, res);
+    });
 
     return this.router;
   }

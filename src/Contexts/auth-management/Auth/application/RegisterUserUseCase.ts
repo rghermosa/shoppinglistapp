@@ -13,7 +13,8 @@ export class RegisterUserUseCase {
   }
 
   async execute(email: string, password: string) {
-    const encryptedPassword = await bcrypt.hash(password, 10);
+    const salt = bcrypt.genSaltSync(10);
+    const encryptedPassword = await bcrypt.hashSync(password, salt);
 
     const user: User = User.create(email, encryptedPassword);
     console.log(user);
