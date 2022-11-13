@@ -5,14 +5,14 @@ import { User as UserEntity } from '../entities/User';
 export class PostgresRegisterRepository implements RegisterRepository {
   async create(userDomain: User, token: string): Promise<void> {
     return new Promise(async (resolve, reject) => {
-      const userExists = await this.exists(userDomain.id);
+      const userExists = await this.exists(userDomain.id.value);
       if (userExists) {
         throw new Error('User already exists');
       }
       const user: UserEntity = new UserEntity();
-      user.id = userDomain.id;
-      user.email = userDomain.email;
-      user.password = userDomain.password;
+      user.id = userDomain.id.value;
+      user.email = userDomain.email.value;
+      user.password = userDomain.password.value;
       user.token = token;
       user.save();
       resolve();
