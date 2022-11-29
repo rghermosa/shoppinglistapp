@@ -1,12 +1,7 @@
-import { registry } from 'tsyringe';
-import { BrandId } from '../../../Brands/domain/valueobjects/BrandId';
 import { ProductId } from '../../domain/valueobjects/ProductId';
-import { ProductName } from '../../domain/valueobjects/ProductName';
 import { ProductNotFoundException } from '../../domain/Exceptions/ProductNotFoundException';
 import { Product } from '../../domain/Product';
 import { ProductRepository } from '../../domain/ProductRepository';
-import { ProductCategory } from '../../domain/valueobjects/ProductCategory';
-import { ProductPrice } from '../../domain/valueobjects/ProductPrice';
 
 export class InMemoryProductRepository implements ProductRepository {
   private static products: Array<Product> = [];
@@ -14,7 +9,6 @@ export class InMemoryProductRepository implements ProductRepository {
   async create(product: Product): Promise<void> {
     return new Promise((resolve, reject) => {
       InMemoryProductRepository.products.push(product);
-      //console.log(InMemoryProductRepository.products);
       resolve();
     });
   }
@@ -23,14 +17,12 @@ export class InMemoryProductRepository implements ProductRepository {
     return new Promise((resolve, reject) => {
       const index = InMemoryProductRepository.products.indexOf(product);
       InMemoryProductRepository.products[index] = product;
-      //console.log(product);
       resolve();
     });
   }
 
   async getAll(): Promise<Product[]> {
     return new Promise((resolve, reject) => {
-      //console.log(InMemoryProductRepository.products);
       resolve(InMemoryProductRepository.products);
     });
   }

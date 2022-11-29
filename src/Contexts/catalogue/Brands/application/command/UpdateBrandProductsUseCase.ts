@@ -23,10 +23,7 @@ export class UpdateBrandProductsUseCase {
     const productFound: Product = await this.productFinder.execute(product.id);
 
     const brand = await this.brandFinder.execute(product.brand);
-    //console.log(brand);
     brand.products.push(product.id);
-
-    //console.log(brand);
 
     await this.brandRepository.forEach((brandRepository: BrandRepository) => {
       brandRepository.save(brand);

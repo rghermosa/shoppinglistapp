@@ -1,8 +1,7 @@
-import * as dotenv from 'dotenv';
 import clc from 'cli-color';
+import * as dotenv from 'dotenv';
 import { DataSource } from 'typeorm';
-import { Brand } from '../Brands/infrastructure/typeorm/entities/Brand';
-import { Product } from '../Products/infrastructure/typeorm/entities/Product';
+import { User } from '../Auth/infrastructure/typeorm/entities/User';
 dotenv.config();
 
 export class DatabaseConnection {
@@ -15,12 +14,12 @@ export class DatabaseConnection {
   async create() {
     this.connection = new DataSource({
       type: 'postgres',
-      host: 'catalogue-db',
+      host: 'auth-db',
       username: 'postgres',
       password: 'postgres',
       port: 5432,
-      database: 'Catalogue',
-      entities: [Brand, Product],
+      database: 'Auth',
+      entities: [User],
       logging: true,
       synchronize: true,
     });

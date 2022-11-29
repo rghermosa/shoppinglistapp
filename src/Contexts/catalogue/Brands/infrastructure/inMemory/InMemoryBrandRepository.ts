@@ -1,10 +1,7 @@
-import { registry } from 'tsyringe';
 import { BrandId } from '../../domain/valueobjects/BrandId';
-import { BrandName } from '../../domain/valueobjects/BrandName';
 import { Brand } from '../../domain/Brand';
 import { BrandRepository } from '../../domain/BrandRepository';
 import { BrandNotFoundException } from '../../domain/Exceptions/BrandNotFoundException';
-import { BrandCategory } from '../../domain/valueobjects/BrandCategory';
 
 export class InMemoryBrandRepository implements BrandRepository {
   private static brands: Array<Brand> = [];
@@ -13,7 +10,6 @@ export class InMemoryBrandRepository implements BrandRepository {
   async create(brand: Brand): Promise<void> {
     return new Promise((resolve, reject) => {
       InMemoryBrandRepository.brands.push(brand);
-      //console.log(brand);
       resolve();
     });
   }
@@ -22,14 +18,12 @@ export class InMemoryBrandRepository implements BrandRepository {
     return new Promise((resolve, reject) => {
       const index = InMemoryBrandRepository.brands.indexOf(brand);
       InMemoryBrandRepository.brands[index] = brand;
-      //console.log(brand);
       resolve();
     });
   }
 
   async getAll(): Promise<Brand[] | void> {
     return new Promise((resolve, reject) => {
-      //console.log(InMemoryBrandRepository.brands);
       resolve(InMemoryBrandRepository.brands);
     });
   }

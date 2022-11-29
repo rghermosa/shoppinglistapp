@@ -33,13 +33,9 @@ export class Product {
     id?: ProductId
   ): Product {
     const product: Product = new Product(name, category, price, brand, id);
-    console.log(product);
     const isNewlyCreated = !!id?.value === false;
     if (isNewlyCreated) {
-      //const eventEmitter = EventBus.getInstance();
-      //eventEmitter.emit('UpdateBrandOnProductCreated', new ProductCreatedEvent({ product: product }));
-      //console.log('PUBLISHER WORKS FINE');
-      //product.record(new ProductCreatedEvent({ id: product.id.value, productName: product.name.value }));
+      //TODO ADD NEW EVENT
     }
     return product;
   }

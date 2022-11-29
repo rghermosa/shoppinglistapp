@@ -1,8 +1,7 @@
-import { Product } from '../../Products/domain/Product';
-import { BrandId } from './valueobjects/BrandId';
-import { BrandName } from './valueobjects/BrandName';
 import { ProductId } from '../../Products/domain/valueobjects/ProductId';
 import { BrandCategory } from './valueobjects/BrandCategory';
+import { BrandId } from './valueobjects/BrandId';
+import { BrandName } from './valueobjects/BrandName';
 
 export class Brand {
   readonly id: BrandId;
