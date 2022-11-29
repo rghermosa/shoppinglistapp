@@ -1,27 +1,25 @@
+import { UserAlreadyExistsException } from '../../../domain/exceptions/UserAlreadyExistsException';
 import { RegisterRepository } from '../../../domain/interfaces/RegisterRepository';
 import { User } from '../../../domain/User';
+import { UserMapper } from '../../UserMapper';
 import { User as UserEntity } from '../entities/User';
 
 export class PostgresRegisterRepository implements RegisterRepository {
   async create(userDomain: User, token: string): Promise<void> {
     return new Promise(async (resolve, reject) => {
-      const userExists = await this.exists(userDomain.id.value);
-      if (userExists) {
-        throw new Error('User already exists');
-      }
+      const userExists = await this.exists(userDomain.email.value);
+      if (userExists) throw new UserAlreadyExistsException();
       const user: UserEntity = new UserEntity();
-      user.id = userDomain.id.value;
-      user.email = userDomain.email.value;
-      user.password = userDomain.password.value;
+      ({id: user.id, email: user.email, password: user.password} = UserMapper.toObject(userDomain))
       user.token = token;
       user.save();
       resolve();
     });
   }
 
-  async exists(id: string): Promise<boolean> {
+  async exists(email: string): Promise<boolean> {
     return new Promise(async (resolve, reject) => {
-      (await UserEntity.findOneBy({ id: `${id}` })) ? resolve(true) : resolve(false);
+      (await UserEntity.findOneBy({ email: `${email}` })) ? resolve(true) : resolve(false);
     });
   }
 }

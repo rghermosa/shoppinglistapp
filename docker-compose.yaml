@@ -3,7 +3,10 @@ version: '3'
 services:
   rabbitmq:
       container_name: rabbitmq
-      image: rabbitmq:3.7.4
+      image: rabbitmq:3.7.4-management-alpine
+      ports:
+       - 5672:5672
+       - 15672:15672
       
   catalogue:
     container_name: catalogue
@@ -54,4 +57,3 @@ services:
       - POSTGRES_DB=Auth
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-  
