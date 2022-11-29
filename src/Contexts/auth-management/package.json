@@ -5,7 +5,7 @@
   "main": "./app/start.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node dist/app/start.js",
+    "start": "node dist/auth-management/app/start.js",
     "dev": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' ./app/start.ts",
     "build": "npm run build:tsc",
     "build:tsc": "pwd && ls .. && tsc -p ./tsconfig.json && npm run start"
@@ -37,9 +37,11 @@
   "dependencies": {
     "@nestjs/common": "^9.0.11",
     "@nestjs/core": "^9.0.11",
+    "@types/amqplib": "^0.10.0",
     "@types/bcrypt": "^5.0.0",
     "@types/bcryptjs": "^2.4.2",
     "@types/jsonwebtoken": "^8.5.9",
+    "amqplib": "^0.10.3",
     "bcrypt": "^5.0.1",
     "bcryptjs": "^2.4.3",
     "cli-color": "^2.0.3",

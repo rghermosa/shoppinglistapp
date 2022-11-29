@@ -16,4 +16,4 @@ RUN npm install
 
 EXPOSE 3000
 
-CMD [ "node", "dist/app/start.js" ]
+CMD [ "node", "dist/auth-management/app/start.js" ]

@@ -1,4 +1,5 @@
 import { User } from '../domain/User';
+import { User as UserEntity } from './typeorm/entities/User'
 
 export class UserMapper {
   public static toDomain(raw: any): Promise<User> {
@@ -11,9 +12,13 @@ export class UserMapper {
 
   public static toPersistence(user: User): any {
     return {
-      id: user.id,
-      email: user.email,
-      password: user.password,
+      id: user.id.value,
+      email: user.email.value,
+      password: user.password.value,
     };
+  }
+
+  public static toObject(user: User) {
+    return {id: user.id.value, email: user.email.value, password: user.password.value}
   }
 }
