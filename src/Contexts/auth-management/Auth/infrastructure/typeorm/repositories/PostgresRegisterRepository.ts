@@ -1,4 +1,4 @@
-import { UserAlreadyExistsException } from '../../../domain/exceptions/UserAlreadyExistsException';
+import { UserAlreadyExistsException } from '../../../../../shared/domain/Exceptions/UserAlreadyExistsException';
 import { RegisterRepository } from '../../../domain/interfaces/RegisterRepository';
 import { User } from '../../../domain/User';
 import { UserMapper } from '../../UserMapper';

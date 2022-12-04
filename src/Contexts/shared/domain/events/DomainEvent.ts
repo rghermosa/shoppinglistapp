@@ -1,6 +1,4 @@
-import { Id } from "../../../../shared/domain/valueObjects/Id";
-import { AggregateRoot } from "../AggregateRoot";
-import { User } from "../User";
+import { Id } from '../valueObjects/Id'
 import { IDomainEvent } from "./IDomainEvent";
 import { v4 as uuid } from 'uuid';
 

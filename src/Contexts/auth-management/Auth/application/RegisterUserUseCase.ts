@@ -2,7 +2,7 @@ import bcrypt from 'bcryptjs';
 import * as dotenv from 'dotenv';
 import jwt from 'jsonwebtoken';
 import { inject, injectable } from 'tsyringe';
-import { EventManager } from '../domain/interfaces/EventManager';
+import { IEventManager } from '../../../shared/domain/events/IEventManager';
 import { RegisterRepository } from '../domain/interfaces/RegisterRepository';
 import { User } from '../domain/User';
 dotenv.config();
@@ -10,7 +10,7 @@ dotenv.config();
 @injectable()
 export class RegisterUserUseCase {
   constructor(@inject('RegisterRepository') private userRepository: RegisterRepository,
-  @inject('EventManager') private eventManager: EventManager) {
+    @inject('EventManager') private eventManager: IEventManager) {
     this.userRepository = userRepository;
     this.eventManager = eventManager;
   }
