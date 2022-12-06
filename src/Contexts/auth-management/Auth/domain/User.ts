@@ -9,10 +9,9 @@ export class User extends AggregateRoot {
   readonly email: Email;
   readonly password: Password;
   private constructor(email: Email, password: Password, id: Id) {
-    super();
+    super(id);
     this.email = email;
     this.password = password;
-    this.id = id;
   }
 
   public static create(emailValue: string, passwordValue: string, idValue?: string): User {

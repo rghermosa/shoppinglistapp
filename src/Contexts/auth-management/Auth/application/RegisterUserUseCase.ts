@@ -3,6 +3,7 @@ import * as dotenv from 'dotenv';
 import jwt from 'jsonwebtoken';
 import { inject, injectable } from 'tsyringe';
 import { IEventManager } from '../../../shared/domain/events/IEventManager';
+import { USER, USERS } from '../../../shared/infrastructure/events/MQconstants';
 import { RegisterRepository } from '../domain/interfaces/RegisterRepository';
 import { User } from '../domain/User';
 dotenv.config();
@@ -23,7 +24,7 @@ export class RegisterUserUseCase {
 
     const token = jwt.sign({ user_id: user.id, email }, 'QWERTY', { expiresIn: '24h' });
     await this.userRepository.create(user, token);
-    await this.eventManager.dispatchEvents(user);
+    await this.eventManager.dispatchEvents(USER, user, USERS);
     await user.clearEvents();
   }
 }

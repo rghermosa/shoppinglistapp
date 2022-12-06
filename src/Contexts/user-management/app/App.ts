@@ -1,4 +1,4 @@
-import { DatabaseConnection } from './db/database';
+import { DatabaseConnection } from './database';
 import { Server } from './server';
 
 export class App {

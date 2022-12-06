@@ -9,8 +9,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "uuid": "^9.0.0",
     "@types/amqplib": "^0.10.0",
-    "amqplib": "^0.10.3"
+    "amqplib": "^0.10.3",
+    "tsyringe": "^4.7.0",
+    "uuid": "^9.0.0"
   }
 }

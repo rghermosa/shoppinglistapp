@@ -24,9 +24,7 @@
   },
   "include": [
     "./**/*.ts",
-    "./**/*.js",
-    "../shared/domain/Exceptions/UserAlreadyExistsException.ts",
-    "../shared/domain/Exceptions/EmailNotValidException.ts",
+    "./**/*.js"
   ],
   "exclude": [
     "node_modules",

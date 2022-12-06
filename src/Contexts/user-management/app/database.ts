@@ -14,7 +14,7 @@ export class DatabaseConnection {
   async create() {
     this.connection = new DataSource({
       type: 'postgres',
-      host: 'auth-db',
+      host: 'user-db',
       username: 'postgres',
       password: 'postgres',
       port: 5432,

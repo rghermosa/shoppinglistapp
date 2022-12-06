@@ -8,6 +8,6 @@ export class CreateUserUseCase {
   }
 
   async run() {
-    this.userRepository.create();
+    //this.userRepository.create();
   }
 }

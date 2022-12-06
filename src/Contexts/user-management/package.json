@@ -1,11 +1,11 @@
 {
-  "name": "user_management",
+  "name": "user-management",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node dist/auth-management/app/start.js",
+    "start": "node dist/user-management/app/start.js",
     "dev": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' ./app/start.ts",
     "build": "npm run build:tsc",
     "build:tsc": "pwd && ls .. && tsc -p ./tsconfig.json && npm run start"
@@ -20,6 +20,8 @@
     "@types/cli-color": "^2.0.2",
     "@types/errorhandler": "^1.5.0",
     "@types/node": "^18.11.10",
+    "@types/amqplib": "^0.10.0",
+    "amqplib": "^0.10.3",
     "cli-color": "^2.0.3",
     "errorhandler": "^1.5.1",
     "express": "^4.18.2",

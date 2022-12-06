@@ -7,10 +7,17 @@
     "inlineSourceMap": true,
     "target": "es2017",
     "outDir": "./dist",
-    "lib": ["es6"],
+    "lib": [
+      "es6"
+    ],
     "resolveJsonModule": true,
-    "types": ["node", "jest"],
-    "typeRoots" : ["./node_modules/@types", "./src/@types"],
+    "types": [
+      "node"
+    ],
+    "typeRoots": [
+      "./node_modules/@types",
+      "./src/@types"
+    ],
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "esModuleInterop": true,
