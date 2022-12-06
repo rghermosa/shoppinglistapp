@@ -52,7 +52,7 @@ It is highly recommended to also have a postgres client installed and running to
 
 Once all of that is done, you just have to follow this two steps:
 
-1. Run `docker-compose build` in your preffered terminal to build the services and compile the code. 
+1. Run `docker-compose build` in your preffered terminal to build the services and compile the code.  
 _It usually takes less than a minute_
 
 2. Run `docker-compose up` after a build to run the compiled code.  
