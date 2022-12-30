@@ -1,3 +1,3 @@
 export enum QueuesToConsume {
-    USER_QUEUE = 'USER_QUEUE'
+    USER_CREATED = 'USER_CREATED'
 }

@@ -22,6 +22,9 @@ services:
     links:
       - rabbitmq
       - catalogue-db
+    depends_on:
+      - catalogue-db
+
   catalogue-db:
     container_name: catalogue-db
     build: ./src/Contexts/catalogue/app/db
@@ -45,6 +48,8 @@ services:
       - MESSAGE_BUS=amqp://rabbitmq
     links:
       - rabbitmq
+      - auth-db
+    depends_on:
       - auth-db
 
   auth-db:
@@ -70,6 +75,8 @@ services:
       - MESSAGE_BUS=amqp://rabbitmq
     links:
       - rabbitmq
+      - user-db
+    depends_on:
       - user-db
 
   user-db:

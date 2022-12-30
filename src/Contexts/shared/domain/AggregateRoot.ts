@@ -1,4 +1,4 @@
-import { DomainEvent } from './events/DomainEvent'
+import { DomainEvent } from './events/common/DomainEvent'
 import { Id } from './valueObjects/Id'
 
 export abstract class AggregateRoot {
@@ -8,8 +8,11 @@ export abstract class AggregateRoot {
     this.id = id
   }
 
-  async addEvent(aggregate: AggregateRoot, queue: string): Promise<void> {
-    await this.domainEvents.push(new DomainEvent(queue, aggregate.id.value));
+  abstract buildDomainEvent(): Promise<DomainEvent>;
+
+  async addEvent(): Promise<void> {
+    await this.domainEvents.push(await this.buildDomainEvent());
+
   }
 
   async clearEvents(): Promise<void> {

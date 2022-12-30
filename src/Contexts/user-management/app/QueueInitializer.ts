@@ -1,5 +1,5 @@
 import { container, inject, injectable } from "tsyringe";
-import { IEventManager } from "../../shared/domain/events/IEventManager";
+import { IEventManager } from "../../shared/domain/events/common/IEventManager";
 import { USER, USERS } from "../../shared/infrastructure/events/MQconstants";
 import { QueuesToCreate } from "../User/infrastructure/events/QueuesToCreate";
 

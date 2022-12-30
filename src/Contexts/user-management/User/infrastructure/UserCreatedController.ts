@@ -1,29 +1,39 @@
 import { delay, inject, injectable } from 'tsyringe'
-import { IEventManager } from '../../../shared/domain/events/IEventManager';
-import { Id } from '../../../shared/domain/valueObjects/Id';
-import { USER, USERS } from '../../../shared/infrastructure/events/MQconstants';
+import { IEventManager } from '../../../shared/domain/events/common/IEventManager';
+import { Observer, Subject } from '../../../shared/domain/utils/ISubjectObserver';
 import { CreateUserUseCase } from '../application/CreateUserUseCase';
+import { IMapper } from '../domain/interfaces/IMapper';
 import { QueuesToConsume } from './events/QueuesToConsume';
-import { User } from '../domain/User';
+import { AuthUser } from './external/dto/AuthUser';
+import { UserCreated } from './external/events/UserCreated';
 
 @injectable()
-export class UserCreatedController {
-	constructor(@inject('EventManager') private eventManager: IEventManager,
+export class UserCreatedController implements Observer {
+	constructor(
+		@inject('EventManager') private eventManager: IEventManager,
+		@inject('EventSubject') private eventSubject: Subject,
+		@inject('UserMapper') private userMapper: IMapper,
 		@inject(delay(() => CreateUserUseCase))
 		private createUserUseCase: CreateUserUseCase) {
 		this.eventManager = eventManager;
+		this.userMapper = userMapper;
 		this.createUserUseCase = createUserUseCase;
 	}
 
 	async run() {
-		const listOfQueues: string[] = Object.values(QueuesToConsume)
-		await console.log(listOfQueues)
-		const user: User = new User(new Id);
-		user.addEvent(user, 'omitible?')
-		await this.eventManager.dispatchEvents(USER, user, USERS)
-		await this.eventManager.consume(listOfQueues);
-		// for (const event in this.eventManager.consume(listOfQueues)) {
-		// 	this.createUserUseCase.run();
-		// }
+		await this.eventSubject.attachObserver(this);
+		console.log(this.eventSubject)
+		await this.eventManager.consume(QueuesToConsume.USER_CREATED)
+	}
+
+	async update(event: UserCreated): Promise<void> {
+		console.log('New event recorded: ', event)
+
+		const authUserDto: AuthUser = event;
+		//Object.assign(authUserDto, event.email, event.name, event.lastName)
+		console.log(authUserDto)
+		const mappedUser = await this.userMapper.fromExternalToDto(authUserDto)
+		console.log(mappedUser)
+		await this.createUserUseCase.run(mappedUser)
 	}
 }
