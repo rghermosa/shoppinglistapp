@@ -20,7 +20,7 @@ export class Server {
     const router = Router();
     router.use(errorHandler());
     this.express.use(router);
-    ContextStarter.run(router);
+    ContextStarter.run();
   }
 
   async listen(): Promise<void> {

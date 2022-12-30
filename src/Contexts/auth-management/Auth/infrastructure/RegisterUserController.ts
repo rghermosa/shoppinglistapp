@@ -16,8 +16,7 @@ export class RegisterUserController {
 
   async run(req: Request, res: Response) {
     try {
-      console.log(req.body);
-      await this.registerUserUseCase.execute(req.body.email, req.body.password);
+      await this.registerUserUseCase.execute(req.body.name, req.body.lastName, req.body.email, req.body.password);
       res.send({ status: 'OK' }).status(201);
     } catch (error) {
       if (error instanceof Error) {

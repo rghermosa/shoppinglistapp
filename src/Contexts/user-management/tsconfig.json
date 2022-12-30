@@ -3,7 +3,6 @@
     "allowJs": true,
     "module": "commonjs",
     "moduleResolution": "node",
-    "pretty": true,
     "inlineSourceMap": true,
     "target": "es2017",
     "outDir": "./dist",
@@ -12,7 +11,8 @@
     ],
     "resolveJsonModule": true,
     "types": [
-      "node"
+      "node",
+      "jest"
     ],
     "typeRoots": [
       "./node_modules/@types",
@@ -23,8 +23,8 @@
     "esModuleInterop": true,
   },
   "include": [
-    "./**/*.js",
     "./**/*.ts",
+    "./**/*.js"
   ],
   "exclude": [
     "node_modules",

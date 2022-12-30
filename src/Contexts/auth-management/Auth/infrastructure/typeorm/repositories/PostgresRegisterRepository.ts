@@ -1,4 +1,4 @@
-import { UserAlreadyExistsException } from '../../../domain/exceptions/UserAlreadyExistsException';
+import { UserAlreadyExistsException } from '../../../../../shared/domain/Exceptions/UserAlreadyExistsException';
 import { RegisterRepository } from '../../../domain/interfaces/RegisterRepository';
 import { User } from '../../../domain/User';
 import { UserMapper } from '../../UserMapper';
@@ -10,7 +10,7 @@ export class PostgresRegisterRepository implements RegisterRepository {
       const userExists = await this.exists(userDomain.email.value);
       if (userExists) throw new UserAlreadyExistsException();
       const user: UserEntity = new UserEntity();
-      ({id: user.id, email: user.email, password: user.password} = UserMapper.toObject(userDomain))
+      ({ id: user.id, email: user.email, password: user.password } = UserMapper.toObject(userDomain))
       user.token = token;
       user.save();
       resolve();

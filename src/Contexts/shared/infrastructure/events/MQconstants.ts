@@ -1,0 +1,5 @@
+export const DIRECT = 'direct'
+export const USER = 'User'
+export const USERS = 'users'
+export const USER_POPULATED = 'USER_POPULATED'
+export const USER_CREATED = 'USER_CREATED'

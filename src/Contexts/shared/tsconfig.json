@@ -23,8 +23,10 @@
     "esModuleInterop": true,
   },
   "include": [
-    "./**/*.js",
     "./**/*.ts",
+    "./**/*.js",
+    "../shared/domain/Exceptions/UserAlreadyExistsException.ts",
+    "../shared/domain/Exceptions/EmailNotValidException.ts",
   ],
   "exclude": [
     "node_modules",
