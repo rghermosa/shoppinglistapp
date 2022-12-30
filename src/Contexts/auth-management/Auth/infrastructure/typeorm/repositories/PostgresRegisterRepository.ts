@@ -10,7 +10,7 @@ export class PostgresRegisterRepository implements RegisterRepository {
       const userExists = await this.exists(userDomain.email.value);
       if (userExists) throw new UserAlreadyExistsException();
       const user: UserEntity = new UserEntity();
-      ({id: user.id, email: user.email, password: user.password} = UserMapper.toObject(userDomain))
+      ({ id: user.id, email: user.email, password: user.password } = UserMapper.toObject(userDomain))
       user.token = token;
       user.save();
       resolve();
